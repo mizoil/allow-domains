@@ -23,9 +23,7 @@ TelegramSubnets = 'Subnets/IPv4/telegram.lst'
 CloudflareSubnets = 'Subnets/IPv4/cloudflare.lst'
 HetznerSubnets = 'Subnets/IPv4/hetzner.lst'
 OVHSubnets = 'Subnets/IPv4/ovh.lst'
-DigitalOceanSubnets = 'Subnets/IPv4/digitalocean.lst'
-CloudfrontSubnets = 'Subnets/IPv4/cloudfront.lst'
-ExcludeServices = {"telegram.lst", "cloudflare.lst", "google_ai.lst", "google_play.lst", 'hetzner.lst', 'ovh.lst', 'digitalocean.lst', 'cloudfront.lst', 'hodca.lst'}
+ExcludeServices = {"telegram.lst", "cloudflare.lst", "google_ai.lst", "google_play.lst", 'hetzner.lst', 'ovh.lst'}
 
 def raw(src, out):
     domains = set()
@@ -226,7 +224,7 @@ def generate_srs_for_categories(directories, output_json_directory='JSON', compi
     os.makedirs(output_json_directory, exist_ok=True)
     os.makedirs(compiled_output_directory, exist_ok=True)
 
-    exclude = {"meta", "twitter", "discord", "telegram", "hetzner", "ovh", "digitalocean", "cloudfront"}
+    exclude = {"meta", "twitter", "discord", "telegram", "hetzner", "ovh"}
 
     for directory in directories:
         for filename in os.listdir(directory):
@@ -489,8 +487,6 @@ if __name__ == '__main__':
     generate_srs_combined(CloudflareSubnets, "Services/cloudflare.lst")
     generate_srs_combined(HetznerSubnets, "Services/hetzner.lst")
     generate_srs_combined(OVHSubnets, "Services/ovh.lst")
-    generate_srs_combined(DigitalOceanSubnets, "Services/digitalocean.lst")
-    generate_srs_combined(CloudfrontSubnets, "Services/cloudfront.lst")
 
     # Xray domains
     prepare_dat_domains(russia_inside, 'russia-inside', directories)
